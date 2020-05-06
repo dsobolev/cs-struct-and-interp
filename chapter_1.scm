@@ -1,6 +1,6 @@
-# Ex. 1.3
-# Takes 3 args
-# Returns the sum of the squares of the two larger numbers
+; Ex. 1.3
+; Takes 3 args
+; Returns the sum of the squares of the two larger numbers
 (define (maxsum a1 a2 a3)
 	(define (square x)
 		(* x x)
@@ -17,28 +17,30 @@
 	)
 )
 
-# Ex. 1.7
-# Square root procedure by Newton's Method.
-(define (sqrt-custom x tolerance) 
-	(sqrt-iter x 1.0 tolerance))
+; Ex. 1.7
+; Square root procedure by Newton's Method.
+(define (sqrt-custom x tolerance)
+	(
+		; Sqrt iterative with a value tolerance set
+		(define (sqrt-iter x guess tolerance)
+			(if (good-enough? guess (improve guess x) tolerance)
+				guess
+				(sqrt-iter x (improve guess x) tolerance)
+			)
+		)
 
-# Average of two args
-(define (average a b)
-	(/ (+ a b) 2) ) 
+		; Compares values diff with proper delta
+		(define (good-enough? a b delta)
+			(< (abs (- a b)) delta) )
 
-# Compares values diff with proper delta
-# Works for positive values only
-(define (good-enough? a b delta)
-	(< (abs (- a b)) delta) )
+		; Improves value of 'guess' based on main arg value
+		(define (improve guess x)
+			(average guess (/ x guess) ))
 
-# Improves value of 'guess' based on main arg value
-(define (improve guess x)
-	(average guess (/ x guess) ))
+		; Average of two args
+		(define (average a b)
+			(/ (+ a b) 2) ) 
 
-# Sqrt iterative with a value tolerance set
-(define (sqrt-iter x guess tolerance)
-	(if (good-enough? guess (improve guess x) tolerance)
-		guess
-		(sqrt-iter x (improve guess x) tolerance)
+		(sqrt-iter x 1.0 tolerance)
 	)
 )
