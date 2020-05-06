@@ -22,16 +22,16 @@
 (define (sqrt-custom x tolerance)
 	
 	; Sqrt iterative with a value tolerance set
-	(define (sqrt-iter guess tolerance)
-		(if (good-enough? guess (improve guess) tolerance)
+	(define (sqrt-iter guess)
+		(if (good-enough? guess (improve guess))
 			guess
-			(sqrt-iter (improve guess) tolerance)
+			(sqrt-iter (improve guess))
 		)
 	)
 
-	; Compares values diff with proper delta
-	(define (good-enough? a b delta)
-		(< (abs (- a b)) delta) )
+	; Compares values diff with tolerance previously set
+	(define (good-enough? a b)
+		(< (abs (- a b)) tolerance) )
 
 	; Improves value of 'guess' based on main arg value
 	(define (improve guess)
@@ -41,5 +41,5 @@
 	(define (average a b)
 		(/ (+ a b) 2) ) 
 
-	(sqrt-iter 1.0 tolerance)
+	(sqrt-iter 1.0)
 )
