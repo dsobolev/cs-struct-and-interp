@@ -19,6 +19,8 @@
 
 # Ex. 1.7
 # Square root procedure by Newton's Method.
+(define (sqrt-custom x tolerance) 
+	(sqrt-iter x 1.0 tolerance))
 
 # Average of two args
 (define (average a b)
