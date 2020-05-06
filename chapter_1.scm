@@ -33,3 +33,10 @@
 (define (improve guess x)
 	(average guess (/ x guess) ))
 
+# Sqrt iterative with a value tolerance set
+(define (sqrt-iter x guess tolerance)
+	(if (good-enough? guess (improve guess x) tolerance)
+		guess
+		(sqrt-iter x (improve guess x) tolerance)
+	)
+)
