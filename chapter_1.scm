@@ -20,27 +20,26 @@
 ; Ex. 1.7
 ; Square root procedure by Newton's Method.
 (define (sqrt-custom x tolerance)
-	(
-		; Sqrt iterative with a value tolerance set
-		(define (sqrt-iter x guess tolerance)
-			(if (good-enough? guess (improve guess x) tolerance)
-				guess
-				(sqrt-iter x (improve guess x) tolerance)
-			)
+	
+	; Sqrt iterative with a value tolerance set
+	(define (sqrt-iter guess tolerance)
+		(if (good-enough? guess (improve guess) tolerance)
+			guess
+			(sqrt-iter (improve guess) tolerance)
 		)
-
-		; Compares values diff with proper delta
-		(define (good-enough? a b delta)
-			(< (abs (- a b)) delta) )
-
-		; Improves value of 'guess' based on main arg value
-		(define (improve guess x)
-			(average guess (/ x guess) ))
-
-		; Average of two args
-		(define (average a b)
-			(/ (+ a b) 2) ) 
-
-		(sqrt-iter x 1.0 tolerance)
 	)
+
+	; Compares values diff with proper delta
+	(define (good-enough? a b delta)
+		(< (abs (- a b)) delta) )
+
+	; Improves value of 'guess' based on main arg value
+	(define (improve guess)
+		(average guess (/ x guess) ))
+
+	; Average of two args
+	(define (average a b)
+		(/ (+ a b) 2) ) 
+
+	(sqrt-iter 1.0 tolerance)
 )
