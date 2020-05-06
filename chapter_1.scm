@@ -16,3 +16,20 @@
 		)
 	)
 )
+
+# Ex. 1.7
+# Square root procedure by Newton's Method.
+
+# Average of two args
+(define (average a b)
+	(/ (+ a b) 2) ) 
+
+# Compares values diff with proper delta
+# Works for positive values only
+(define (good-enough? a b delta)
+	(< (abs (- a b)) delta) )
+
+# Improves value of 'guess' based on main arg value
+(define (improve guess x)
+	(average guess (/ x guess) ))
+
