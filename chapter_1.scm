@@ -43,3 +43,9 @@
 
 	(sqrt-iter 1.0)
 )
+
+; Ex. 1.8
+; Cube root by Newton's method. 
+; Approximation formula (x - arg, guess - approximation value): ( x/(guess*guess) + 2*guess ) / 3
+(define (improve x guess) 
+	(/ (+ (/ x (* guess guess) ) (* 2 guess) ) 3 ))
