@@ -47,5 +47,22 @@
 ; Ex. 1.8
 ; Cube root by Newton's method. 
 ; Approximation formula (x - arg, guess - approximation value): ( x/(guess*guess) + 2*guess ) / 3
-(define (improve x guess) 
-	(/ (+ (/ x (* guess guess) ) (* 2 guess) ) 3 ))
+(define (cube-root x tolerance) 
+
+	(define (cube-root-iter guess)
+		(if (good-enough? guess (improve guess) )
+			guess
+			(cube-root-iter (improve guess))
+		)
+	)
+
+	; Compares values diff with tolerance previously set
+	(define (good-enough? a b)
+		(< (abs (- a b)) tolerance) )
+
+	; Improves quess value
+	(define (improve guess) 
+		(/ (+ (/ x (* guess guess) ) (* 2 guess) ) 3 ))
+
+	(cube-root-iter 1.0)
+)
