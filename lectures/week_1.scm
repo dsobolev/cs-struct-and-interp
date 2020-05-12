@@ -1,5 +1,7 @@
 ; #2 Takes sequence of numbers and returns its squares
-(define (squares l)
+; It might be var from ideal since I don't know yet how to 
+; use variables right and how to accumulate values properly
+(define (squares input_list)
 
 	(define (build_sequence inp res)
 
@@ -11,13 +13,13 @@
 		)
 	)
 
-	(define (append_squared res l) 
-		(append res (list (square_first l) ) ) 
+	(define (append_squared res lst) 
+		(append res (list (square_first lst) ) ) 
 	)
 
-	(define (square_first l) (sq (car l)))
+	(define (square_first lst) (sq (car lst)))
 
 	(define (sq x) (* x x))
 
-	(build_sequence l '())
+	(build_sequence input_list '())
 )
