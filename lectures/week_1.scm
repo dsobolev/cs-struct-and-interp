@@ -29,10 +29,6 @@
 ; you is replaced by me except at the beginning of the sentence, where it’s replaced by I
 ; Example: (switch ’(You told me that I should wake you up))  --->>> (i told you that you should wake me up)
 (define (switch sentence)
-	;(if (eqv? '() (cdr sentence )) 
-	;	'()
-	;	()
-	;)
 
 	(define (switch_iter part)
 		(if (eqv? '() (cdr part)) 
@@ -51,5 +47,10 @@
 			( (eqv? word 'you) 'me )
 			( else word )
 		)
+	)
+
+	(if (eqv? 'you (car sentence)) 
+		(cons 'I (switch_iter (cdr sentence)) )
+		(cons (car sentence) (switch_iter (cdr sentence)) )
 	)
 )
