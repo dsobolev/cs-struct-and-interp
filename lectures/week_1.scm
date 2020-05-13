@@ -34,6 +34,17 @@
 	;	()
 	;)
 
+	(define (switch_iter part)
+		(if (eqv? '() (cdr part)) 
+			;The end of a sentence. Last word
+			(list (check_n_change (car part)))
+			; Not the end. Do the change
+			(cons 
+				(check_n_change (car part)) 
+				(switch_iter (cdr part)) )
+		)
+	)
+
 	(define (check_n_change word)
 		(cond 
 			( (or (eqv? word 'i) (eqv? word 'me)) 'you )
