@@ -75,3 +75,14 @@
 		(check_asc (car sentence) (cdr sentence) )
 	)
 )
+
+; #5 Takes a sentence.
+; Returns a sentence containing only those words of the argument whose last letter is E
+; Since I can iterate over symbol with `first`/'but-last' functions like the lecturer, 
+; I'm dealing with string rather than symbol
+(define (ends-e sentence)
+
+	(define (last_letter str)
+		(string-ref str (- (string-length str) 1))
+	)
+)
