@@ -85,4 +85,8 @@
 	(define (last_letter str)
 		(string-ref str (- (string-length str) 1))
 	)
+
+	(define (ends_with_e? word)
+		(char=? #\e (last_letter (symbol->string word)))
+	)
 )
