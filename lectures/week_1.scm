@@ -80,6 +80,7 @@
 ; Returns a sentence containing only those words of the argument whose last letter is E
 ; Since I can iterate over symbol with `first`/'but-last' functions like the lecturer, 
 ; I'm dealing with string rather than symbol
+; Example: '(please put the salami above the blue elephant) -> '(please the above the blue)
 (define (ends-e sentence)
 
 	(define (last_letter str)
@@ -88,5 +89,13 @@
 
 	(define (ends_with_e? word)
 		(char=? #\e (last_letter (symbol->string word)))
+	)
+
+	(if (eqv? '() sentence)
+		'()
+		(if (ends_with_e? (car sentence))
+			(cons (car sentence) (ends-e (cdr sentence) ))
+			(ends-e (cdr sentence))
+		)
 	)
 )
