@@ -54,3 +54,24 @@
 		(cons (car sentence) (switch_iter (cdr sentence)) )
 	)
 )
+
+; #4 A predicate. 
+; Takes a sentence of numbers.
+; Returns a true value if the numbers are in ascending order, or a false value otherwise
+(define (ordered? sentence)
+
+	(define (check_asc val line)
+		(if (eqv? '() line) 
+			#t
+			(if (> val (car line) )
+				#f
+				(check_asc (car line) (cdr line))
+			)
+		)
+	)
+
+	(if (or (eqv? '() sentence) (eqv? '() (cdr sentence)) )
+		#f
+		(check_asc (car sentence) (cdr sentence) )
+	)
+)
