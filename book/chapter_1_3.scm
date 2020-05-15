@@ -23,6 +23,8 @@
 			)
 		)
 	)
+
+	(define term)
 )
 
 (define (cube x) (* x x x))
