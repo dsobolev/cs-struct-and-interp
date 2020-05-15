@@ -14,7 +14,15 @@
 (define (simpsons_integral f, a, b, n)
 	(if (odd? n) (set! n (+ n 1)))
 
-	
+	(define (сoef i)
+		(if (or (= 0 i) (= n i)) 
+			1
+			(if (even? i) 
+				2
+				4
+			)
+		)
+	)
 )
 
 (define (cube x) (* x x x))
