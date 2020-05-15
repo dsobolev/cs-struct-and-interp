@@ -8,4 +8,13 @@
 )
 
 ; Ex. 1.29 Simpson's Rule of numerical integration
+; f - the actual function. cube us used for testing
+; a, b - boundaries of an area
+; n - number of iterations, should be even
+(define (simpsons_integral f, a, b, n)
+	(if (odd? n) (set! n (+ n 1)))
+
+	
+)
+
 (define (cube x) (* x x x))
