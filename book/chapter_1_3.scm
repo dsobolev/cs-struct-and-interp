@@ -6,3 +6,6 @@
 		   (sum term (next a) next b))
 	)
 )
+
+; Ex. 1.29 Simpson's Rule of numerical integration
+(define (cube x) (* x x x))
