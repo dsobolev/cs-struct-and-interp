@@ -47,3 +47,13 @@
 ; To check simpsons_integral
 (simpsons_integral cube 0 1 100)
 (simpsons_integral cube 0 1 1000)
+
+;Ex 1.31a 
+; Common product procedure
+(define (product term a next b)
+    (if (> a b) 
+        1
+        (* (term a)
+           (product term (next a) next b))
+    )
+)
