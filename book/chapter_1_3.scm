@@ -103,3 +103,10 @@
 (define (product_ac term a next b)
     (accumulate * 1 term a next b)
 )
+
+(define (factorial n)
+    (define (next x) (+ 1 x))
+    (define (term x) x)
+
+    (product_ac term 1 next n)
+)
