@@ -110,3 +110,8 @@
 
     (product_ac term 1 next n)
 )
+
+;Ex 1.33
+(define (filtered_accumulate filter combiner null_value term a next b)
+)
+; check prime? - divide from 2 to floor(n/2)
