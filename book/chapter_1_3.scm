@@ -57,3 +57,21 @@
            (product term (next a) next b))
     )
 )
+; Calc п/4. As I understand, the idea is: п/4 = 2/3 * 4/3 * 4/5 * 6/5 ...
+; kinda a/b * (a + 2)/b * (a + 2)/(b + 2) and so on.
+; In the book it is rewriten as (2*4*4*6...)/(3*3*5*5..)
+; I suppose the denominator to be (1*3*3*5...)
+(define (one_fourth_of_pi highest)
+
+    (define (term x) (* x (+ x 2)) )
+    (define (next x) (+ x 2) )
+
+    (if (even? highest)
+        (/ (product term 2 next highest)
+           (* (product term 1 next (- highest 1)) (+ highest 1))
+        )
+        (/ (* (product term 2 next highest) (+ highest 1) )
+           (product term 1 next highest)
+        )
+    )
+)
