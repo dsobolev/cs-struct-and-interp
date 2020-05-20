@@ -75,3 +75,31 @@
         )
     )
 )
+
+(define (approx_pi highest)
+    (* 4 (one_fourth_of_pi highest) )
+)
+
+;Ex 1.32a 'sum' and 'product' are the cases of 'accumulate'
+(define (accumulate combiner null_value term a next b)
+    (if (> a b)
+        null_value
+        (combiner (term a)
+                  (accumulate 
+                      combiner 
+                      null_value 
+                      term 
+                      (next a) 
+                      next 
+                      b)
+        )
+    )
+)
+
+(define (sum_ac term a next b)
+    (accumulate + 0 term a next b)
+)
+
+(define (product_ac term a next b)
+    (accumulate * 1 term a next b)
+)
