@@ -152,4 +152,15 @@
 ;Ex 1.33b Product of positive integers (x < N) that are relatively prime to N
 (define (primes_list n)
 
+    (define (check_prime x)
+        (if (> x n)
+            '()
+            (if (prime? x)
+                (cons x (check_prime (+ x 1)))
+                (check_prime (+ x 1))
+            )
+        )
+    )
+
+    (cons 2 (check_prime 3))
 )
