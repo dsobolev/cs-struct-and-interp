@@ -111,7 +111,45 @@
     (product_ac term 1 next n)
 )
 
-;Ex 1.33
+;Ex 1.33 Accumulate only those values which satisfy some 'filter' condition
 (define (filtered_accumulate filter combiner null_value term a next b)
+    (if (> a b)
+        null_value
+        (if (filter a)
+            (combiner (term a)
+                      (filtered_accumulate filter combiner null_value term (next a) next b))
+            (combiner null_value
+                      (filtered_accumulate filter combiner null_value term (next a) next b))
+        )
+    )
 )
-; check prime? - divide from 2 to floor(n/2)
+
+;# Ex 1.33a Sum of squares of prime numbers in [a, b] interval
+(define (prime? x)
+
+    (define (divided? a b) (= 0 (remainder a b)) )
+
+    (define (prime_iter arg)
+        (if (= arg 1)
+            #f
+            (if (> arg (floor (/ x 2)) )
+                #t
+                (if (divided? x arg)
+                    #f
+                    (prime_iter (+ arg 1)))))
+    )
+
+    (prime_iter 2)
+)
+
+(define (sum_of_squares_prime a b)
+    (define (square x) (* x x))
+    (define (next x) (+ x 1))
+
+    (filtered_accumulate prime? + 0 square a next b )
+)
+
+;Ex 1.33b Product of positive integers (x < N) that are relatively prime to N
+(define (primes_list n)
+
+)
