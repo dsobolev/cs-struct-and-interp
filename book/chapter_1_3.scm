@@ -165,21 +165,21 @@
     (cons 2 (check_prime 3))
 )
 
-(define (divisors x)
+(define (prime_divisors x)
 
     (define (divisor? div)
         (= 0 (remainder x div)))
 
-    (define (check_divisor arg)
-        (if (> arg (floor (/ x 2)))
+    (define (check_divisors lst)
+        (if (eqv? '() lst)
             '()
-            (if (divisor? arg)
-                (cons arg (check_divisor (+ arg 1)))
-                (check_divisor (+ arg 1)))
+            (if (divisor? (car lst))
+                (cons (car lst) (check_divisors (cdr lst)))
+                (check_divisors (cdr lst)))
         )
     )
 
-    (check_divisor 2)
+    (check_divisors ( primes_list (floor (/ x 2)) ) )
 )
 ; 1) N is not divided to X
 ; 2) N and X don't have common divisors
