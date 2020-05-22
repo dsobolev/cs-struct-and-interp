@@ -164,3 +164,22 @@
 
     (cons 2 (check_prime 3))
 )
+
+(define (divisors x)
+
+    (define (divisor? div)
+        (= 0 (remainder x div)))
+
+    (define (check_divisor arg)
+        (if (> arg (floor (/ x 2)))
+            '()
+            (if (divisor? arg)
+                (cons arg (check_divisor (+ arg 1)))
+                (check_divisor (+ arg 1)))
+        )
+    )
+
+    (check_divisor 2)
+)
+; 1) N is not divided to X
+; 2) N and X don't have common divisors
