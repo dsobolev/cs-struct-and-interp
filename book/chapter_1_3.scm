@@ -150,6 +150,7 @@
 )
 
 ;Ex 1.33b Product of positive integers (x < N) that are relatively prime to N
+; * Primes_list returns list of prime numbers less then n
 (define (primes_list n)
 
     (define (check_prime x)
@@ -165,6 +166,8 @@
     (cons 2 (check_prime 3))
 )
 
+; * Returns prime divisors of argument
+; Depends on 'prime_list' procedure and 'prime?' predicate
 (define (prime_divisors x)
 
     (define (divisor? div)
@@ -181,5 +184,32 @@
 
     (check_divisors ( primes_list (floor (/ x 2)) ) )
 )
-; 1) N is not divided to X
-; 2) N and X don't have common divisors
+
+; Actual procedure
+; Depends on 'prime_divisors' -> 'primes_list' -> 'prime?'
+(define (product_primes_to n)
+
+    (define prime_divs (prime_divisors n))
+    (define (divisor? a b) (= 0 (remainder b a)))
+    (define (no_divisors_in_list? x lst)
+        (if (or (eqv? '() lst) (> (car lst) x))
+            #t
+            (if (divisor? (car lst) x)
+                #f
+                (no_divisors_in_list? x (cdr lst))
+            )
+        )
+    )
+
+    (define (prime_to_n? x)
+        ; 1) N is not divided to X
+        ; 2) N and X don't have common divisors
+        (if (divisor? x n)
+            #f
+            (no_divisors_in_list? x prime_divs)
+        )
+    
+    )
+
+    (filtered_accumulate prime_to_n? * 1 (lambda(a) a) 2 (lambda (a) (+ a 1)) n)
+)
